@@ -1,0 +1,85 @@
+from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return """
+<h1>📝 Notes App</h1>
+<form id="noteForm">
+    <input type="text" id="noteInput" placeholder="Write a note..." />
+    <button type="submit">Add</button>
+</form>
+
+<ul id="notesList"></ul>
+
+<script>
+async function loadNotes() {
+    const res = await fetch('/notes');
+    const data = await res.json();
+    const list = document.getElementById('notesList');
+    list.innerHTML = '';
+    data.forEach(n => {
+        const li = document.createElement('li');
+        li.textContent = n.text + " ";
+        const btn = document.createElement("button");
+        btn.textContent = '❌';
+        btn.onclick = async () => {
+            await fetch(`/notes/${n.id}`, { method: 'DELETE' });
+            loadNotes();
+        };
+
+        li.appendChild(btn);
+        list.appendChild(li);
+    });
+}
+document.getElementById('noteForm').onsubmit = async (e) => {
+    e.preventDefault();
+    const input = document.getElementById('noteInput');
+    const text = input.value;
+    await fetch('/notes', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({text: text})
+    });
+    input.value = '';
+    loadNotes();
+};
+
+loadNotes();
+</script>
+"""
+
+@app.route('/health')
+def health():
+    return jsonify({'status': 'ok'})
+
+@app.route('/echo', methods=['POST'])
+def echo():
+    data = request.get_json()
+    return jsonify({'you_sent': data})
+
+notes = []
+
+@app.route('/notes', methods=['GET'])
+def get_notes():
+    return jsonify(notes)
+
+@app.route('/notes', methods=['POST'])
+def add_note():
+    data = request.get_json()
+    note = {
+        "id": len(notes) + 1,
+        "text": data.get("text")
+    }
+    notes.append(note)
+    return jsonify(note)
+
+@app.route('/notes/<int:note_id>', methods=['DELETE'])
+def delete_note(note_id):
+    global notes
+    notes = [n for n in notes if n["id"] != note_id]
+    return jsonify({"deleted": note_id})
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
