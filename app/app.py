@@ -1,4 +1,23 @@
 from flask import Flask, jsonify, request
+import sqlite3
+
+import sqlite3
+
+def get_db():
+    conn = sqlite3.connect('notes.db')
+    conn.row_factory = sqlite3.Row
+    return conn
+
+with get_db() as conn:
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS notes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            text TEXT NOT NULL
+        )
+    """)
+
+rows = get_db().execute("SELECT * FROM notes").fetchall()
+return jsonify([dict(r) for r in rows])
 
 app = Flask(__name__)
 
@@ -48,7 +67,6 @@ loadNotes();
 </script>
 """
 
-notes = []
 
 @app.route('/notes', methods=['GET'])
 def get_notes():
