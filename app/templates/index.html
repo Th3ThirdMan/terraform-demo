@@ -70,7 +70,7 @@ async function loadNotes() {
     const list = document.getElementById('notesList');
     list.innerHTML = '';
 
-    data.notes.forEach(n => {
+    data.forEach(n => {
         const li = document.createElement('li');
         li.textContent = n.text;
         list.appendChild(li);
