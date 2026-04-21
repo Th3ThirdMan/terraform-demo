@@ -14,10 +14,10 @@ A containerised Flask notes application deployed to AWS EC2 using Terraform, Doc
 ## Screenshots
 
 ### Application
-![Application screenshot](screenshots/app.png)
+![Application screenshot](screenshots/CloudNoteApp.png)
 
 ### AWS EC2
 ![AWS EC2 screenshot](screenshots/AWSInstance.png)
 
 ### GitHub Actions
-![GitHub Actions screenshot](screenshots/github-actions.png)
+![GitHub Actions screenshot](screenshots/GithubActions.png)
