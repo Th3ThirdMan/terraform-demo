@@ -22,5 +22,5 @@ jobs:
             docker rm -f flask-app || true
             docker build -t flask-app .
             docker run -d -p 80:5000 \
-            -v /home/ubuntu/data:/app \
+            -v /home/ubuntu/data/notes.db:app/notes.db \
              --name flask-app flask-app
