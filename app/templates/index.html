@@ -1,4 +1,59 @@
- return """
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notes App</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 14px;
+            border: none;
+            border-radius: 6px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            background: white;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
 <h1>📝 Notes App</h1>
 <form id="noteForm">
     <input type="text" id="noteInput" placeholder="Write a note..." />
@@ -40,4 +95,5 @@ document.getElementById('noteForm').onsubmit = async (e) => {
 
 loadNotes();
 </script>
-"""
+</body>
+</html> 
