@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Notes Application</title>
+<title>Notes Application</title>
 
-   <style>
+<style>
+
+.subtitle {
+    text-align: center;
+    color: #667085;
+    margin-top: -10px;
+    margin-bottom: 30px;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background: #eef2f7;
+    background: linear-gradient(135deg, #eef2f7, #f8fafc);
     max-width: 600px;
     margin: 60px auto;
 }
 
 h1 {
+    font-size: 38px;
     text-align: center;
     margin-bottom: 20px;
+    color: #101828;
 }
 
 form {
@@ -50,6 +60,7 @@ ul {
 li {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background: white;
     padding: 12px;
     margin-bottom: 10px;
@@ -57,12 +68,24 @@ li {
     list-style: none;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
+
+li button {
+    background: #dc3545;
+    padding: 8px 12px;
+    font-size: 13px;
+}
+
+li button:hover {
+    background: #b02a37;
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>📝 Notes App</h1>
+<h1>📝 Cloud Notes</h1>
+<p class=""subtitle">A Dockerised Flask app running on AWS EC2</p>
 <form id="noteForm">
     <input type="text" id="noteInput" placeholder="Write a note..." />
     <button type="submit">Add</button>
