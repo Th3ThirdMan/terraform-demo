@@ -20,5 +20,5 @@ jobs:
             cd ~/terraform-demo
             git pull origin main
             docker rm -f flask-app || true
-            docker build --no-cache -t flask-app ./app
+            docker build --no-cache -t flask-app ./app/app
             docker run -d -p 80:5000 -v /home/ubuntu/data:/data --name flask-app flask-app

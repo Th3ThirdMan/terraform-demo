@@ -23,8 +23,8 @@ resource "aws_security_group" "web" {
   }
 
   ingress {
-    from_port = 5000
-    to_port = 5000
+    from_port = 80
+    to_port = 80
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -58,7 +58,7 @@ git clone https://github.com/Th3ThirdMan/flask-terraform-demo.git
 cd flask-terraform-demo/app
 
 docker build -t flask-app .
-docker run -d -p 5000:5000 flask-app
+docker run -d -p 80:5000 flask-app
 EOF
 
   tags = {
