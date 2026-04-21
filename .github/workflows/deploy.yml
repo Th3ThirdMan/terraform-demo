@@ -16,7 +16,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
-          script: |
             script: |
             cd ~/terraform-demo
             git pull origin main
