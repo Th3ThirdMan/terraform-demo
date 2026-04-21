@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request, render_template
 import sqlite3
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 def get_db():
     conn = sqlite3.connect('/data/notes.db')
