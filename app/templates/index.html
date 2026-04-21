@@ -80,7 +80,17 @@ async function loadNotes() {
 
     data.forEach(n => {
         const li = document.createElement('li');
-        li.textContent = n.text;
+        const span = document.createElement('span');
+        span.textContent = n.text;
+
+        const btn = document.createElement('button');
+        btn.textContent = 'Delete';
+        btn.onclick = async () => {
+            await fetch(`/notes/${n.id}`, { method: 'DELETE' });
+            loadNotes();
+        };
+        li.appendChild(span);
+        li.appendChild(btn);
         list.appendChild(li);
     });
 }
