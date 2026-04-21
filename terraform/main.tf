@@ -16,11 +16,19 @@ resource "aws_security_group" "web" {
   name = "flask-sg"
 
   ingress {
-    from_port   = 5000
-    to_port     = 5000
+    from_port   = 22
+    to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  ingress {
+    from_port = 5000
+    to_port = 5000
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  
 
   egress {
     from_port   = 0
@@ -33,6 +41,7 @@ resource "aws_security_group" "web" {
 resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
+  key_name ="terraform-key"
 
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.web.id]
