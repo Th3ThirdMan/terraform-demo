@@ -4,7 +4,7 @@ import sqlite3
 import sqlite3
 
 def get_db():
-    conn = sqlite3.connect('notes.db')
+    conn = sqlite3.connect('/data/notes.db')
     conn.row_factory = sqlite3.Row
     return conn
 
