@@ -18,7 +18,8 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd ~/terraform-demo
-            git pull origin main
+            git fetch origin main
+            git reset --hard origin/main
             docker rm -f flask-app || true
             docker build --no-cache -t flask-app ./app
             docker run -d -p 80:5000 -v /home/ubuntu/data:/data --name flask-app flask-app
