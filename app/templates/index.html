@@ -79,6 +79,13 @@ li button:hover {
     background: #b02a37;
 }
 
+.app-card {
+    background: white;
+    padding: 24px;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(16,24,40,0.08);
+}
+
 </style>
 </head>
 
@@ -86,12 +93,14 @@ li button:hover {
 
 <h1>📝 Cloud Notes</h1>
 <p class=""subtitle">A Dockerised Flask app running on AWS EC2</p>
+<div class="app-card">
 <form id="noteForm">
     <input type="text" id="noteInput" placeholder="Write a note..." />
     <button type="submit">Add</button>
 </form>
 
 <ul id="notesList"></ul>
+</div>
 
 <script>
 async function loadNotes() {
